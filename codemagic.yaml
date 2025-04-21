@@ -7,11 +7,10 @@ workflows:
       vars:
         EXPO_TOKEN: Encrypted_Expo_Token_Here
     scripts:
-      - name: Set up Expo
+      - name: Install dependencies
         script: |
-          npm install -g expo-cli
-          npx expo install
-      - name: Export the Expo iOS build
+          npm install
+      - name: Build Expo iOS app
         script: |
           npx expo export --platform ios --output-dir dist
     artifacts:
@@ -19,4 +18,4 @@ workflows:
     publishing:
       email:
         recipients:
-          - chaoaau@gmail.com
+          - your@email.com
