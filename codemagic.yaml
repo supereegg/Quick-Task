@@ -1,21 +1,18 @@
 workflows:
-  expo-ios-workflow:
+  expo-ios:
     name: Build Expo iOS App
     instance_type: mac_mini_m1
     max_build_duration: 60
     environment:
       vars:
         EXPO_TOKEN: Encrypted_Expo_Token_Here
-    triggering:
-      events:
-        - push
     scripts:
-      - name: Install dependencies
+      - name: Set up Expo
         script: |
-          npm install
-      - name: Build Expo iOS app
-        script: |
+          npm install -g expo-cli
           npx expo install
+      - name: Export the Expo iOS build
+        script: |
           npx expo export --platform ios --output-dir dist
     artifacts:
       - dist/ios/**/*.ipa
